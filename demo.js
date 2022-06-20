@@ -151,4 +151,116 @@
 
 	// display(person);
 
+	// Object Properties
+
+	// let person = {
+	// 	firstName: 'Kevin',
+	// 	lastName: 'Fontana',
+	// 	age: 32
+	// }
+
+	// for (let propertyName in person) {
+	// 	display(propertyName + ': ' + person[propertyName]);
+	// }
+
+	// display(Object.getOwnPropertyDescriptor(person, 'firstName'));
+	// OUTPUT
+	// Object {
+	// 	value: Kevin,
+	// 	writable: true,
+	// 	enumerable: true,
+	// 	configurable: true
+	// }
+
+	// Modifying Object properties
+	// Object.defineProperty(person, 'firstName', {writable: false})
+
+	// display(Object.getOwnPropertyDescriptor(person, 'firstName'));
+	// OUTPUT
+	// Object {
+	// 	value: Kevin,
+	// 	writable: false,
+	// 	enumerable: true,
+	// 	configurable: true
+	// }
+
+	// Changing the object
+	// let person = {
+	// 	name: {
+	// 		firstName: 'Kevin',
+	// 		lastName: 'Fontana'
+	// 	},
+	// 	age: 32
+	// };
+
+	// Object.defineProperty(person, 'name', {writable: false})
+
+	//You can't change the name property but you can change properties on the name property
+	// i.e. you can change firstName and lastName
+	// To avoid this you can use Object.freeze(person.name) and this will make it and it's properties not writable
+
+	// person.name.firstName = 'Elijah';
+
+	// display(person.name);
+
+	// Enumerable examples
+	// let person = {
+	// 	firstName: 'Kevin',
+	// 	lastName: 'Fontana',
+	// 	age: 32
+	// };
+
+	// The firstName attribute is no longer Enumerable and therefore does not show up
+	// Also effects the keys and serialization of the object
+	// Object.defineProperty(person, 'firstName', {enumerable: false});
+
+	// for (let propertyName in person) {
+	// 	display(propertyName + ': ' + person[propertyName])
+	// };
+
+	// display(Object.keys(person));
+	// display(JSON.stringify(person));
+	// display(person.firstName);
+
+	// Configurable examples
+	// let person = {
+	// 	firstName: 'Kevin',
+	// 	lastName: 'Fontana',
+	// 	age: 32
+	// };
+
+	// Object.defineProperty(person, 'firstName', {configurable: false});
+	// Object.defineProperty(person, 'firstName', {enumerable: false});
+	// OUTPUT Uncaught TypeError: Cannot redefine property: firstName
+	// because we set this to unconfigurable
+	// Strange behavior but when you change configurable to false, you cannot chagne it back to true again
+	// weirder still, if you chagne it back to true and change writable to true it will get rid of the error
+
+	// getters and setters examples
+	let person = {
+		name: {
+			firstName: 'Kevin',
+			lastName: 'Fontana'
+		},
+		age: 32
+	};
+
+	Object.defineProperty(person, 'fullName',
+	{
+		get: function() {
+			return this.name.firstName + ' ' + this.name.lastName;
+		},
+		set: function(value) {
+			var nameParts = value.split(' ');
+			this.name.firstName = nameParts[0];
+			this.name.lastName = nameParts[1];
+		}
+	});
+
+	person.fullName = 'Fred Jones';
+
+	display(person.fullName);
+	display(person.name.firstName);
+	display(person.name.lastName);
+	
 })();
