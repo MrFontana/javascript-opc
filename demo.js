@@ -124,4 +124,31 @@
 	// display(kevin.isAdult());
 	// display(elijah.isAdult());
 
+	// Object.create example
+	// let person = Object.create(
+	// 	Object.prototype,
+	// 	{
+	// 		firstName: {
+	// 			value: 'Jim',
+	// 			enumerable: true,
+	// 			writable: true,
+	// 			configurable: true
+	// 		},
+	// 		lastName: {
+	// 			value: 'Fontana',
+	// 			enumerable: true,
+	// 			writable: true,
+	// 			configurable: true
+	// 		},
+	// 		age: {
+	// 			value: 'Jim',
+	// 			enumerable: true,
+	// 			writable: true,
+	// 			configurable: true
+	// 		}
+	// 	}
+	// );
+
+	// display(person);
+
 })();
