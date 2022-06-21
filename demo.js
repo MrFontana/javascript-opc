@@ -504,4 +504,43 @@
 
 	display(kevinStudent);
 
+	// REGEX EXAMPLE
+
+	// function checkPasswordComplexity(password) {
+	// 	// let regex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$'); // Regular way of doing things, also takes a regex flag
+	// 	let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/ // short hand, takes regex flag
+	// 	return regex.test(password);
+	// }
+
+	// display(checkPasswordComplexity('Stronger1'));
+
+	// EXEC EXAMPLE
+
+	function findAlerts(logData) {
+		// FIND ALL ERRORS REGARDLESS OF ERROR LEVEL. FIND STRING 'ERROR' FOLLOWED BY ANY CHARACTERS, FOLLOWED BY A COLON. Global flag
+		// CAPTURE GROUPS EXAMPLE
+		let regex = /ERROR(.*?):(.*?);/g;
+
+		let result = regex.exec(logData);
+		while(result !== null) {
+			display(result[1])
+			display(result[2])
+			display('---------------------------');
+			result = regex.exec(logData);
+		}
+		// return regex.exec(logData);
+		displayRegexArray(regex.exec(logData));
+		displayRegexArray(regex.exec(logData));
+	}
+	
+	let logData = 'INFO:Ok;ERROR(HIGH):Something Broke;ERROR(LOW):Something fishy;ERROR(HIGH):So many errors;';
+	findAlerts(logData);
+	
+	// EXAMPLE OF HOW ARRAYS ARE JUST OBJECTS IN JAVASCRIPT
+	// display(result[0]);
+	// display(result.index);
+	// display(result.input);
+	
+	// display(result);
+
 })();
